@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  postgres:
+    build:
+      context: .
+    image: my-postgres-db:latest
+    container_name: postgres
+    networks:
+      - mynetwork
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DB_HOST=postgres
+
+    ports:
+      - 5433:5433
+    expose:
+      - 5433
+
+networks:
+  mynetwork:
