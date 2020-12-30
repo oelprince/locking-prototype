@@ -60,6 +60,7 @@ public class BillResourceController {
         return ResponseEntity.ok(billResponse);
     }
 
+
     @Transactional
     @PutMapping(value = "/delete-bill-detail/{billNbr}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<BillResponse> deleteBill(@PathVariable("billNbr") String billNbr) {
