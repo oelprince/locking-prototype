@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "cl_bill_event", schema = "billing", catalog = "billing_db")
-public class ClBillEvent {
+@Table(name = "ORDER_EVENT")
+public class OrderEvent {
 
     private String eventId;
     private String objId;

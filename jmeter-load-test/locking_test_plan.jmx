@@ -33,11 +33,13 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-  &quot;entryNbr&quot;: &quot;TST35657534&quot;,&#xd;
+  &quot;orderNbr&quot;: &quot;435345345&quot;,&#xd;
+  &quot;customerNbr&quot;: &quot;1729627505&quot;,&#xd;
+  &quot;entryNbr&quot;: &quot;FLU&quot;,&#xd;
   &quot;crteById&quot;: &quot;SYS&quot;,&#xd;
   &quot;updById&quot;: &quot;SYS&quot;,&#xd;
-  &quot;crteTs&quot;: &quot;2020-12-07T02:58:47.843Z&quot;,&#xd;
-  &quot;updTs&quot;: &quot;2020-12-07T02:58:47.843Z&quot;,&#xd;
+  &quot;crteTs&quot;: &quot;2021-01-17T19:58:58.070Z&quot;,&#xd;
+  &quot;updTs&quot;: &quot;2021-01-17T19:58:58.070Z&quot;,&#xd;
   &quot;entryAmt&quot;: 10.00&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -48,7 +50,7 @@
           <stringProp name="HTTPSampler.port">8080</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/save-bill-detail?filerCd=TST</stringProp>
+          <stringProp name="HTTPSampler.path">/save-order?customerNbr=1729627505</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>

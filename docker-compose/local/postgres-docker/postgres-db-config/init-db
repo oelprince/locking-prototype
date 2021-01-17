@@ -1,14 +1,14 @@
 create user appuser;
 alter user appuser with encrypted password 'appuserpass';
-create database billing_db;
-\connect billing_db;
-create schema billing;
+create database order_db;
+\connect order_db;
+create schema order_schema;
 
-GRANT ALL PRIVILEGES ON DATABASE billing_db to appuser;
-GRANT ALL PRIVILEGES ON SCHEMA billing to appuser;
+GRANT ALL PRIVILEGES ON DATABASE order_db to appuser;
+GRANT ALL PRIVILEGES ON SCHEMA order_schema to appuser;
 
-ALTER ROLE appuser SET search_path to 'billing';
+ALTER ROLE appuser SET search_path to 'order_schema';
 
-GRANT CONNECT ON DATABASE billing_db to appuser;
+GRANT CONNECT ON DATABASE order_db to appuser;
 
-SET search_path = billing, public;
+SET search_path = order_schema, public;

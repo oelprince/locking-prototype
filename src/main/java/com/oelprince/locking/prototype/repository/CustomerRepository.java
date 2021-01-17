@@ -1,6 +1,6 @@
 package com.oelprince.locking.prototype.repository;
 
-import com.oelprince.locking.prototype.entities.ClBill;
+import com.oelprince.locking.prototype.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
@@ -11,15 +11,15 @@ import javax.persistence.LockModeType;
 import java.util.Optional;
 
 @Repository
-public interface ClBillRepository extends JpaRepository<ClBill, String> {
+public interface CustomerRepository extends JpaRepository<Customer, String> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("select b from ClBill b where b.billNbr=:billNbr")
-    Optional<ClBill> findById(@Param("billNbr") String billNbr);
+    @Query("select b from Customer b where b.customerNbr=:customerNbr")
+    Optional<Customer> findById(@Param("customerNbr") String customerNbr);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("select b from ClBill b where b.filerCd=:filerCd")
-    ClBill findClBillBy(@Param("filerCd") String filerCd);
+    @Query("select b from Customer b where b.customerFilerCd=:customerFilerCd")
+    Customer findCustomerFilerCdBy(@Param("customerFilerCd") String customerFilerCd);
 
 
 }
