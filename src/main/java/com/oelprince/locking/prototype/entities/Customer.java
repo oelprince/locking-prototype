@@ -1,7 +1,6 @@
 package com.oelprince.locking.prototype.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.oelprince.locking.prototype.serializer.MoneySerializer;
 
@@ -14,15 +13,15 @@ import java.util.Objects;
 
 @XmlRootElement
 @Entity
-@Table(name = "cl_bill", schema = "billing", catalog = "billing_db")
-public class ClBill implements Serializable {
-    private String billNbr;
-    private String billStusCd;
-    private String filerCd;
+@Table(name = "CUSTOMER")
+public class Customer implements Serializable {
+    private String customerNbr;
+    private String customerStusCd;
+    private String customerFilerCd;
 
-    @JsonProperty("entryAmt")
+    @JsonProperty("customerTotlAmt")
     @JsonSerialize(using = MoneySerializer.class)
-    private BigDecimal billTotlAmt;
+    private BigDecimal customerTotlAmt;
 
     private String crteById;
     private String updById;
@@ -30,44 +29,44 @@ public class ClBill implements Serializable {
     private Timestamp updTs;
 
     @Id
-    @Column(name = "bill_nbr", nullable = false, length = 20)
-    public String getBillNbr() {
-        return billNbr;
+    @Column(name = "customer_nbr", nullable = false, length = 20)
+    public String getCustomerNbr() {
+        return customerNbr;
     }
 
-    public void setBillNbr(String billNbr) {
-        this.billNbr = billNbr;
-    }
-
-    @Basic
-    @Column(name = "bill_stus_cd", nullable = false, length = 20)
-    public String getBillStusCd() {
-        return billStusCd;
-    }
-
-    public void setBillStusCd(String billStusCd) {
-        this.billStusCd = billStusCd;
+    public void setCustomerNbr(String customerNbr) {
+        this.customerNbr = customerNbr;
     }
 
     @Basic
-    @Column(name = "filer_cd", nullable = false, length = 3)
-    public String getFilerCd() {
-        return filerCd;
+    @Column(name = "customer_stus_cd", nullable = false, length = 20)
+    public String getCustomerStusCd() {
+        return customerStusCd;
     }
 
-    public void setFilerCd(String filerCd) {
-        this.filerCd = filerCd;
+    public void setCustomerStusCd(String customerStusCd) {
+        this.customerStusCd = customerStusCd;
+    }
+
+    @Basic
+    @Column(name = "customer_filer_cd", nullable = false, length = 3)
+    public String getCustomerFilerCd() {
+        return customerFilerCd;
+    }
+
+    public void setCustomerFilerCd(String customerFilerCd) {
+        this.customerFilerCd = customerFilerCd;
     }
 
     @JsonSerialize(using = MoneySerializer.class)
     @Basic
-    @Column(name = "bill_totl_amt", nullable = false, precision = 2)
-    public BigDecimal getBillTotlAmt() {
-        return billTotlAmt;
+    @Column(name = "customer_totl_amt", nullable = false, precision = 2)
+    public BigDecimal getCustomerTotlAmt() {
+        return customerTotlAmt;
     }
 
-    public void setBillTotlAmt(BigDecimal billTotlAmt) {
-        this.billTotlAmt = billTotlAmt;
+    public void setCustomerTotlAmt(BigDecimal customerTotlAmt) {
+        this.customerTotlAmt = customerTotlAmt;
     }
 
     @Basic
@@ -114,10 +113,10 @@ public class ClBill implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClBill clBill = (ClBill) o;
-        return Objects.equals(billNbr, clBill.billNbr) &&
-                Objects.equals(billStusCd, clBill.billStusCd) &&
-                Objects.equals(billTotlAmt, clBill.billTotlAmt) &&
+        Customer clBill = (Customer) o;
+        return Objects.equals(customerNbr, clBill.customerNbr) &&
+                Objects.equals(customerStusCd, clBill.customerStusCd) &&
+                Objects.equals(customerTotlAmt, clBill.customerTotlAmt) &&
                 Objects.equals(crteById, clBill.crteById) &&
                 Objects.equals(updById, clBill.updById) &&
                 Objects.equals(crteTs, clBill.crteTs) &&
@@ -126,6 +125,6 @@ public class ClBill implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(billNbr, billStusCd, billTotlAmt, crteById, updById, crteTs, updTs);
+        return Objects.hash(customerNbr, customerStusCd, customerTotlAmt, crteById, updById, crteTs, updTs);
     }
 }

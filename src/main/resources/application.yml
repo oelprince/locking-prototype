@@ -9,7 +9,7 @@ spring:
     baseline-on-migrate: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/billing_db?currentSchema=billing
+    url: jdbc:postgresql://localhost:5433/order_db?currentSchema=order_schema
     platform: postgres
     username: appuser
     password: appuserpass

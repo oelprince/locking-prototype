@@ -13,10 +13,10 @@ import java.util.Objects;
 
 @XmlRootElement
 @Entity
-@Table(name = "cl_bill_detl", schema = "billing", catalog = "billing_db")
-public class ClBillDetl implements Serializable {
-    private String entryBillNbr;
-    private String clBillNbr;
+@Table(name = "C_ORDER")
+public class Order implements Serializable {
+    private String orderNbr;
+    private String customerNbr;
     private String entryNbr;
 
     @JsonProperty("entryAmt")
@@ -29,23 +29,23 @@ public class ClBillDetl implements Serializable {
     private Timestamp updTs;
 
     @Id
-    @Column(name = "entry_bill_nbr", nullable = false, length = 20)
-    public String getEntryBillNbr() {
-        return entryBillNbr;
+    @Column(name = "order_nbr", nullable = false, length = 20)
+    public String getOrderNbr() {
+        return orderNbr;
     }
 
-    @Column(name = "cl_bill_nbr", nullable = false, length = 20)
-    public String getClBillNbr() {
-        return clBillNbr;
+    @Column(name = "customer_nbr", nullable = false, length = 20)
+    public String getCustomerNbr() {
+        return customerNbr;
     }
 
-    public void setEntryBillNbr(String entryBillNbr) {
-        this.entryBillNbr = entryBillNbr;
+    public void setOrderNbr(String orderNbr) {
+        this.orderNbr = orderNbr;
     }
 
 
-    public void setClBillNbr(String clBillNbr) {
-        this.clBillNbr = clBillNbr;
+    public void setCustomerNbr(String customerNbr) {
+        this.customerNbr = customerNbr;
     }
 
     @Basic
@@ -112,8 +112,9 @@ public class ClBillDetl implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClBillDetl that = (ClBillDetl) o;
-        return Objects.equals(entryBillNbr, that.entryBillNbr) &&
+        Order that = (Order) o;
+        return Objects.equals(orderNbr, that.orderNbr) &&
+                Objects.equals(customerNbr, that.customerNbr) &&
                 Objects.equals(entryNbr, that.entryNbr) &&
                 Objects.equals(crteById, that.crteById) &&
                 Objects.equals(updById, that.updById) &&
@@ -123,6 +124,6 @@ public class ClBillDetl implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(entryBillNbr, entryNbr, crteById, updById, crteTs, updTs);
+        return Objects.hash(orderNbr, customerNbr, crteById, updById, crteTs, updTs);
     }
 }
