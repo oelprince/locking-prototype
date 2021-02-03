@@ -15,6 +15,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "C_ORDER")
 public class Order implements Serializable {
+
+    private Timestamp version;
+
     private String orderNbr;
     private String customerNbr;
     private String entryNbr;
@@ -106,6 +109,16 @@ public class Order implements Serializable {
 
     public void setUpdTs(Timestamp updTs) {
         this.updTs = updTs;
+    }
+
+    @Version
+    @Column(name = "version")
+    public Timestamp getVersion() {
+        return version;
+    }
+
+    public void setVersion(Timestamp version) {
+        this.version = version;
     }
 
     @Override

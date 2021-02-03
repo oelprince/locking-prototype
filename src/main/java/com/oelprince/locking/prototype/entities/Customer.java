@@ -15,6 +15,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer implements Serializable {
+
+
+    private Timestamp version;
     private String customerNbr;
     private String customerStusCd;
     private String customerFilerCd;
@@ -107,6 +110,16 @@ public class Customer implements Serializable {
 
     public void setUpdTs(Timestamp updTs) {
         this.updTs = updTs;
+    }
+
+    @Version
+    @Column(name = "version")
+    public Timestamp getVersion() {
+        return version;
+    }
+
+    public void setVersion(Timestamp version) {
+        this.version = version;
     }
 
     @Override
