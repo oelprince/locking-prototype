@@ -47,10 +47,10 @@ public class OrderResourceController {
     @PostMapping(value = "/save-customer", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<CustomerResponse> saveCustomer(@RequestBody Customer customer) {
         long randomLong = secureRandom.nextInt();
-
         customer.setCustomerNbr(String.valueOf(Math.abs(randomLong)));
         customer.setCrteTs(Timestamp.from(Instant.now()));
         customer.setUpdTs(Timestamp.from(Instant.now()));
+        customer.setVersion(Timestamp.from(Instant.now()));
         Customer clBillSaved = customerRepository.save(customer);
         log.info("Customer number {} created.", clBillSaved.getCustomerNbr());
         CustomerResponse billResponse = CustomerResponse.builder().customer(clBillSaved).build();
@@ -69,37 +69,32 @@ public class OrderResourceController {
         }
 
         orderRepository.delete(orderOptionl.get());
-
         Optional<Customer> billOptional = customerRepository.findById(orderOptionl.get().getCustomerNbr());
-
         Customer clBill = billOptional.get();
-
         BigDecimal billTotalAmd = clBill.getCustomerTotlAmt().subtract(orderOptionl.get().getEntryAmt());
-
         clBill.setCustomerTotlAmt(billTotalAmd);
-
         customerRepository.save(clBill);
-        
-        
-        
+
         return new ResponseEntity(orderOptionl.get(), HttpStatus.ACCEPTED);
     }
 
 
-
-
     @Transactional
     @PostMapping(value = "/save-order", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<CustomerResponse> saveOrder(@RequestParam String customerNbr, @RequestBody Order order) {
+    public ResponseEntity<CustomerResponse> saveOrder(@RequestParam String customerNbr, @RequestParam Boolean pessimisicFlag,
+                                                      @RequestBody Order order) {
         long randomLong = secureRandom.nextInt();
+        log.info("##### entryNbr {} entryAmt {}", order.getCustomerNbr(), order.getEntryAmt());
 
-        log.info("##### entryNbr {} entryAmt {}",order.getCustomerNbr(), order.getEntryAmt());
-
-        Optional<Customer> customerOption = customerRepository.findById(customerNbr);
+        Optional<Customer> customerOption;
+        if(pessimisicFlag) {
+            customerOption = customerRepository.findById(customerNbr);
+        } else {
+            customerOption = customerRepository.findCustomerByCustomerNbr(customerNbr);
+        }
 
         Customer customer = null;
-
-        if(!customerOption.isPresent()) {
+        if (!customerOption.isPresent()) {
             customer = new Customer();
             customer.setCustomerStusCd("CREATE");
             customer.setCustomerFilerCd(customerNbr.substring(0, 3));
@@ -124,11 +119,8 @@ public class OrderResourceController {
         order.setUpdTs(Timestamp.from(Instant.now()));
         order.setCrteById("SYS");
         order.setUpdById("SYS");
-
         Order orderSaved = orderRepository.save(order);
-
         log.info("order saved with order nbr = {}", orderSaved.getOrderNbr());
-
         CustomerResponse customerResponse = CustomerResponse.builder().customer(clBillSaved).build();
 
         return ResponseEntity.ok(customerResponse);

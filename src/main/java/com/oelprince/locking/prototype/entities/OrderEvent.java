@@ -7,6 +7,8 @@ import java.sql.Timestamp;
 @Table(name = "ORDER_EVENT")
 public class OrderEvent {
 
+    @Version
+    private Integer version;
     private String eventId;
     private String objId;
     private String actionCd;
@@ -85,5 +87,12 @@ public class OrderEvent {
         this.updTs = updTs;
     }
 
+    @Column(name = "version")
+    public Integer getVersion() {
+        return version;
+    }
 
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 }
