@@ -17,7 +17,12 @@ import java.util.Objects;
 public class Customer implements Serializable {
 
 
-    private Timestamp version;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -619395132336105543L;
+
+    //private Timestamp version;
     private String customerNbr;
     private String customerStusCd;
     private String customerFilerCd;
@@ -112,32 +117,88 @@ public class Customer implements Serializable {
         this.updTs = updTs;
     }
 
-    @Version
-    @Column(name = "version")
-    public Timestamp getVersion() {
-        return version;
-    }
+    // @Version
+    // @Column(name = "version")
+    // public Timestamp getVersion() {
+    //     return version;
+    // }
 
-    public void setVersion(Timestamp version) {
-        this.version = version;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer clBill = (Customer) o;
-        return Objects.equals(customerNbr, clBill.customerNbr) &&
-                Objects.equals(customerStusCd, clBill.customerStusCd) &&
-                Objects.equals(customerTotlAmt, clBill.customerTotlAmt) &&
-                Objects.equals(crteById, clBill.crteById) &&
-                Objects.equals(updById, clBill.updById) &&
-                Objects.equals(crteTs, clBill.crteTs) &&
-                Objects.equals(updTs, clBill.updTs);
-    }
+    // public void setVersion(Timestamp version) {
+    //     this.version = version;
+    // }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerNbr, customerStusCd, customerTotlAmt, crteById, updById, crteTs, updTs);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((crteById == null) ? 0 : crteById.hashCode());
+        result = prime * result + ((crteTs == null) ? 0 : crteTs.hashCode());
+        result = prime * result + ((customerFilerCd == null) ? 0 : customerFilerCd.hashCode());
+        result = prime * result + ((customerNbr == null) ? 0 : customerNbr.hashCode());
+        result = prime * result + ((customerStusCd == null) ? 0 : customerStusCd.hashCode());
+        result = prime * result + ((customerTotlAmt == null) ? 0 : customerTotlAmt.hashCode());
+        result = prime * result + ((updById == null) ? 0 : updById.hashCode());
+        result = prime * result + ((updTs == null) ? 0 : updTs.hashCode());
+        //result = prime * result + ((version == null) ? 0 : version.hashCode());
+        return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Customer other = (Customer) obj;
+        if (crteById == null) {
+            if (other.crteById != null)
+                return false;
+        } else if (!crteById.equals(other.crteById))
+            return false;
+        if (crteTs == null) {
+            if (other.crteTs != null)
+                return false;
+        } else if (!crteTs.equals(other.crteTs))
+            return false;
+        if (customerFilerCd == null) {
+            if (other.customerFilerCd != null)
+                return false;
+        } else if (!customerFilerCd.equals(other.customerFilerCd))
+            return false;
+        if (customerNbr == null) {
+            if (other.customerNbr != null)
+                return false;
+        } else if (!customerNbr.equals(other.customerNbr))
+            return false;
+        if (customerStusCd == null) {
+            if (other.customerStusCd != null)
+                return false;
+        } else if (!customerStusCd.equals(other.customerStusCd))
+            return false;
+        if (customerTotlAmt == null) {
+            if (other.customerTotlAmt != null)
+                return false;
+        } else if (!customerTotlAmt.equals(other.customerTotlAmt))
+            return false;
+        if (updById == null) {
+            if (other.updById != null)
+                return false;
+        } else if (!updById.equals(other.updById))
+            return false;
+        if (updTs == null) {
+            if (other.updTs != null)
+                return false;
+        } else if (!updTs.equals(other.updTs))
+            return false;
+        // if (version == null) {
+        //     if (other.version != null)
+        //         return false;
+        // } else if (!version.equals(other.version))
+        //     return false;
+        return true;
+    }
+
+
 }

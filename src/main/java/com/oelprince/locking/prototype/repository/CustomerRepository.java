@@ -14,15 +14,15 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
 
-   //@Lock(LockModeType.PESSIMISTIC_WRITE)
+   @Lock(LockModeType.PESSIMISTIC_WRITE)
    @Query("select b from Customer b where b.customerNbr=:customerNbr")
    Optional<Customer> findById(@Param("customerNbr") String customerNbr);
 
-   //@Lock(LockModeType.OPTIMISTIC)
+   @Lock(LockModeType.OPTIMISTIC)
    @Query("select b from Customer b where b.customerNbr=:customerNbr")
    Optional<Customer> findCustomerByCustomerNbr(@Param("customerNbr") String customerNbr);
 
-   //@Lock(LockModeType.PESSIMISTIC_WRITE)
+   @Lock(LockModeType.PESSIMISTIC_WRITE)
    @Query("select b from Customer b where b.customerFilerCd=:customerFilerCd")
    Customer findCustomerFilerCdBy(@Param("customerFilerCd") String customerFilerCd);
 

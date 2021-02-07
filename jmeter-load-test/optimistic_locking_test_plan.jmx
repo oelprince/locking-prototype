@@ -34,7 +34,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
   &quot;orderNbr&quot;: &quot;435345345&quot;,&#xd;
-  &quot;customerNbr&quot;: &quot;1644319033&quot;,&#xd;
+  &quot;customerNbr&quot;: &quot;1798558096&quot;,&#xd;
   &quot;entryNbr&quot;: &quot;FLU&quot;,&#xd;
   &quot;crteById&quot;: &quot;SYS&quot;,&#xd;
   &quot;updById&quot;: &quot;SYS&quot;,&#xd;
@@ -50,7 +50,7 @@
           <stringProp name="HTTPSampler.port">8080</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/save-order?customerNbr=1644319033&amp;pessimisiicFlag=false</stringProp>
+          <stringProp name="HTTPSampler.path">/save-order?customerNbr=1798558096&amp;pessimisicFlag=true</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
